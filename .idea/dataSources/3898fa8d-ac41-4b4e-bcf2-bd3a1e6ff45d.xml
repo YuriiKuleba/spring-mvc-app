@@ -790,8 +790,10 @@ true posixrules
     <database id="2" parent="1" name="kulebaDB">
       <ObjectId>16393</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>548</IntrospectionStateNumber>
+      <IntrospectionStateNumber>578</IntrospectionStateNumber>
       <Current>1</Current>
+      <Relations>sequence|table|16400|16402|1
+</Relations>
     </database>
     <database id="3" parent="1" name="postgres">
       <ObjectId>12401</ObjectId>
@@ -845,7 +847,7 @@ UC/10
 </Acl>
       <StateNumber>340</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>549</IntrospectionStateNumber>
+      <IntrospectionStateNumber>579</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="11" parent="2" name="plpgsql">
@@ -938,34 +940,58 @@ UC/10
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <table id="22" parent="10" name="person">
-      <ObjectId>16394</ObjectId>
+    <sequence id="22" parent="10" name="person_id_seq">
+      <ObjectId>16400</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>547</StateNumber>
+      <StateNumber>577</StateNumber>
+    </sequence>
+    <table id="23" parent="10" name="person">
+      <ObjectId>16402</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>577</StateNumber>
     </table>
-    <column id="23" parent="22" name="id">
+    <column id="24" parent="23" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>547</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>577</StateNumber>
+      <DefaultExpression>nextval(&apos;person_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="24" parent="22" name="name">
+    <column id="25" parent="23" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>547</StateNumber>
+      <StateNumber>577</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="25" parent="22" name="age">
+    <column id="26" parent="23" name="age">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>547</StateNumber>
+      <StateNumber>577</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="26" parent="22" name="email">
+    <column id="27" parent="23" name="email">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
-      <StateNumber>547</StateNumber>
+      <StateNumber>577</StateNumber>
       <TypeId>1043</TypeId>
     </column>
+    <index id="28" parent="23" name="person_pkey">
+      <ObjectId>16409</ObjectId>
+      <StateNumber>577</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationIds>0</CollationIds>
+      <ClassIds>1978</ClassIds>
+    </index>
+    <key id="29" parent="23" name="person_pkey">
+      <ObjectId>16410</ObjectId>
+      <StateNumber>577</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>person_pkey</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>

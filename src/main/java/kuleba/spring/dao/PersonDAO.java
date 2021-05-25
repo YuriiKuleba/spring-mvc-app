@@ -1,13 +1,11 @@
 package kuleba.spring.dao;
 
-import kuleba.spring.models.Person;
+import kuleba.spring.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -34,7 +32,7 @@ public class PersonDAO {
 
     public void save(Person person) {
 
-        jdbcTemplate.update("INSERT INTO Person VALUES(1,?,?,?)",
+        jdbcTemplate.update("INSERT INTO Person VALUES(default,?,?,?)",
                 person.getName(), person.getAge(), person.getEmail());
     }
 
