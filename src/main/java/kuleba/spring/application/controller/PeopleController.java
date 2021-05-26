@@ -1,7 +1,7 @@
-package kuleba.spring.controllers;
+package kuleba.spring.application.controller;
 
 
-import kuleba.spring.dao.PersonDAO;
+import kuleba.spring.dao.impl.PersonDaoImpl;
 import kuleba.spring.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonDAO personDAO;
+    private final PersonDaoImpl personDao;
 
     @Autowired
     public PeopleController(PersonDAO personDAO) {
@@ -25,7 +25,7 @@ public class PeopleController {
     @GetMapping()
     public String index(Model model) {
 
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", personDao.index());
 
         return "people/index";
     }
@@ -33,7 +33,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
 
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDao.show(id));
 
         return "people/show";
     }
@@ -54,7 +54,7 @@ public class PeopleController {
             return "people/new";
         }
 
-        personDAO.save(person);
+        personDao.save(person);
 
         return "redirect:/people";
     }
@@ -62,7 +62,7 @@ public class PeopleController {
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
 
-        model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("person", personDao.show(id));
 
         return "people/edit";
     }
@@ -74,7 +74,7 @@ public class PeopleController {
             return "people/edit";
         }
 
-        personDAO.update(id, person);
+        personDao.update(id, person);
 
         return "redirect:/people";
     }
@@ -82,7 +82,7 @@ public class PeopleController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
 
-        personDAO.delete(id);
+        personDao.delete(id);
 
         return "redirect:/people";
     }
