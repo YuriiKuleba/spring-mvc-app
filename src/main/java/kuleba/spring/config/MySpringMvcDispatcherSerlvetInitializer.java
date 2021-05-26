@@ -15,7 +15,7 @@ class MySpringMvcDispatcherServletInitializer
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SpringConfig.class};
+        return new Class[]{ServletConfig.class};
     }
 
     @Override

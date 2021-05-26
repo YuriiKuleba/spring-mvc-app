@@ -25,7 +25,6 @@ public class PersonDaoImpl implements PersonDao {
     private final String UPDATE_BY_ID_QUERY = "UPDATE Person SET name=?, age=?, email=? WHERE id=?";
     private final String DELETE_BY_ID_QUERY = "DELETE FROM Person WHERE id=?";
 
-
     public List<Person> index() {
 
         return jdbcTemplate.query(SHOW_ALL_QUERY, new BeanPropertyRowMapper<>(Person.class));
