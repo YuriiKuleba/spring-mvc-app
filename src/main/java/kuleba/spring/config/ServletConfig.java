@@ -1,5 +1,8 @@
 package kuleba.spring.config;
 
+import kuleba.spring.application.controller.PeopleController;
+import kuleba.spring.dao.PersonDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,20 +17,18 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 
 @Configuration
-@ComponentScan("kuleba.spring")
 @EnableWebMvc
 public class ServletConfig implements WebMvcConfigurer {
 
-    private final ApplicationContext applicationContext;
-
-    public ServletConfig(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
+    @Bean
+    public PeopleController peopleController(PersonDao personDao) {
+        return new PeopleController(personDao);
     }
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
+//        templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         return templateResolver;

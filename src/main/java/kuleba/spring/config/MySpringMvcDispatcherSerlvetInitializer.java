@@ -10,7 +10,7 @@ class MySpringMvcDispatcherServletInitializer
         extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class[]{SpringConfig.class};
     }
 
     @Override
@@ -29,7 +29,6 @@ class MySpringMvcDispatcherServletInitializer
         super.onStartup(servletContext);
         registerHiddenFieldFilter(servletContext);
     }
-
 
     public void registerHiddenFieldFilter(ServletContext context) {
 

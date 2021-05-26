@@ -30,9 +30,9 @@ public class PersonDaoImpl implements PersonDao {
         return jdbcTemplate.query(SHOW_ALL_QUERY, new BeanPropertyRowMapper<>(Person.class));
     }
 
-    public Person show(int id) {
+    public Person show(Integer id) {
 
-        return jdbcTemplate.query(SHOW_BY_ID_QUERY, new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+        return jdbcTemplate.query(SHOW_BY_ID_QUERY, new BeanPropertyRowMapper<>(Person.class), id)
                 .stream().findAny().orElse(null);
     }
 
@@ -41,14 +41,14 @@ public class PersonDaoImpl implements PersonDao {
         jdbcTemplate.update(SAVE_QUERY, person.getName(), person.getAge(), person.getEmail());
     }
 
-    public void update(int id, Person updatedPerson) {
+    public void update(Integer id, Person updatedPerson) {
 
         jdbcTemplate.update(UPDATE_BY_ID_QUERY,
                 updatedPerson.getName(), updatedPerson.getAge(), updatedPerson.getEmail(), id);
 
     }
 
-    public void delete(int id) {
+    public void delete(Integer id) {
 
         jdbcTemplate.update(DELETE_BY_ID_QUERY, id);
     }

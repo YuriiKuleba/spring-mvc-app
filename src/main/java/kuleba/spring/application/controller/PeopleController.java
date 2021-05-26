@@ -1,6 +1,7 @@
 package kuleba.spring.application.controller;
 
 
+import kuleba.spring.dao.PersonDao;
 import kuleba.spring.dao.impl.PersonDaoImpl;
 import kuleba.spring.model.Person;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,9 @@ import javax.validation.Valid;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonDaoImpl personDao;
+    private final PersonDao personDao;
 
-    public PeopleController(PersonDaoImpl personDao) {
+    public PeopleController(PersonDao personDao) {
         this.personDao = personDao;
     }
 

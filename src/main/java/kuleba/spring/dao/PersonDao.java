@@ -8,11 +8,11 @@ public interface PersonDao {
 
     List<Person> index();
 
-    Person show(int id);
+    Person show(Integer id);
 
     void save(Person person);
 
-    void update(int id, Person updatedPerson);
+    void update(Integer id, Person updatedPerson);
 
-    void delete(int id);
+    void delete(Integer id);
 }
